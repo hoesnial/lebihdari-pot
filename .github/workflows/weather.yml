@@ -1,0 +1,15 @@
+name: Sync Weather Data
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  sync-weather:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Weather API
+        run: |
+          curl -X GET "https://${{ vars.VERCEL_URL || 'localhost:3000' }}/api/weather" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
