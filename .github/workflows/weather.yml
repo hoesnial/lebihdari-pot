@@ -11,5 +11,5 @@ jobs:
     steps:
       - name: Call Weather API
         run: |
-          curl -X GET "https://${{ vars.VERCEL_URL || 'localhost:3000' }}/api/weather" \
+          curl --fail --show-error -X GET "https://${{ vars.VERCEL_URL || 'lebihdari.pot' }}/api/weather" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}"
